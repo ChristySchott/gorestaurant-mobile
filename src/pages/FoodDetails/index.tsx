@@ -136,7 +136,6 @@ const FoodDetails: React.FC = () => {
   );
 
   useLayoutEffect(() => {
-    // Add the favorite icon on the right of the header bar
     navigation.setOptions({
       headerRight: () => (
         <MaterialIcon
