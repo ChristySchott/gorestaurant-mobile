@@ -60,11 +60,26 @@ const Dashboard: React.FC = () => {
   }
 
   useEffect(() => {
-    async function loadFoods(): Promise<void> {
-      // Load Foods from API
+    async function loadDashboard(): Promise<void> {
+      const foodsResponse = await api.get('/foods', {
+        params: {
+          category_like: selectedCategory,
+          name_like: searchValue,
+        },
+      });
+
+      const categoriesResponse = await api.get('/categories');
+
+      setCategories(categoriesResponse.data);
+      setFoods(
+        foodsResponse.data.map((food: Food) => ({
+          ...food,
+          formattedPrice: formatValue(food.price),
+        })),
+      );
     }
 
-    loadFoods();
+    loadDashboard();
   }, [selectedCategory, searchValue]);
 
   useEffect(() => {
