@@ -82,14 +82,6 @@ const Dashboard: React.FC = () => {
     loadDashboard();
   }, [selectedCategory, searchValue]);
 
-  useEffect(() => {
-    async function loadCategories(): Promise<void> {
-      // Load categories from API
-    }
-
-    loadCategories();
-  }, []);
-
   function handleSelectCategory(id: number): void {
     if (selectedCategory === id) {
       setSelectedCategory(undefined);
